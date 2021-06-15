@@ -6,14 +6,9 @@ using System.Collections.ObjectModel;
 using System;
 using System.Linq;
 using System.Windows.Input;
-using DocumentsManagerMVVM.DocumentModel;
-
 
 namespace DocumentsManagerMVVM
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -52,8 +47,10 @@ namespace DocumentsManagerMVVM
 
     public class MainVM : INotifyPropertyChanged
     {
+        public Model MainModel { get; set; }
         public MainVM()
         {
+            MainModel = new Model();
             sourceData = new ObservableCollection<DataRowVM>();
         }
         public ObservableCollection<DataRowVM> sourceData { get; set; }
@@ -62,7 +59,8 @@ namespace DocumentsManagerMVVM
 
         private void CreateDocumentCard(object sender)
         {
-            new DocumentCardWindow().Show();
+            var docCard = new DocumentCardWindow();
+            docCard.Show();
         }
 
         private void CreateTaskCard(object sender)
@@ -90,16 +88,24 @@ namespace DocumentsManagerMVVM
 
     public class DataRowVM
     {
-        public DataRowVM(Subject sub)
+        private ISubject subject;
+        public DataRowVM(ISubject sub)
         {
-            if (sub is Document)
-                Type = "Документ";
-            else if (sub is Task)
-                Type = "Задача";
-            else
-                throw new Exception();
+            subject = sub;
+
         }
-        public string Name { get; set; }
-        public string Type { get; set; }
+        public string Name { get => subject.Name; }
+        public string Type
+        {
+            get
+            {
+                if (subject is Document)
+                    return "Документ";
+                else if (subject is Task)
+                    return "Задача";
+                else
+                    throw new Exception();
+            }
+        }
     }
 }

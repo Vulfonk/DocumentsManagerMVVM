@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,4 +25,17 @@ namespace DocumentsManagerMVVM
             InitializeComponent();
         }
     }
+
+    public class DocCardVM : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        private uint id;
+        public uint Identifier { get => id; set => id = value; }
+
+    }
+
 }

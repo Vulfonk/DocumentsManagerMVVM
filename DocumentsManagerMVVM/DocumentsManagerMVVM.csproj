@@ -55,10 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DocumentModel\Document.cs" />
-    <Compile Include="DocumentModel\Model.cs" />
-    <Compile Include="DocumentModel\Subject.cs" />
-    <Compile Include="DocumentModel\Task.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="ISubject.cs" />
+    <Compile Include="Task.cs" />
     <Compile Include="TaskCardWindow.xaml.cs">
       <DependentUpon>TaskCardWindow.xaml</DependentUpon>
     </Compile>

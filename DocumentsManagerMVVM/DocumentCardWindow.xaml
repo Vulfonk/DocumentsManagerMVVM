@@ -5,8 +5,53 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocumentsManagerMVVM"
         mc:Ignorable="d"
-        Title="DocumentCardWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="DocumentCardWindow" Height="390.79" Width="720.658">
+    
+    <Window.DataContext>
+        <local:DocCardVM/>
+    </Window.DataContext>
+
+    <DockPanel>
+        <Grid DockPanel.Dock="Top" Height="150" Background="Bisque" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Margin="10">
+                Идентификатор
+            </Label>
+            <Label Grid.Row="1" Grid.Column="0" Margin="10">
+                Наименование
+            </Label>
+            <Label Grid.Row="2" Grid.Column="0" Margin="10">
+                Цифровая подпись
+            </Label>
+            <TextBox Text="{Binding Path=Identifier, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="10, 15">
+
+            </TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="10, 15">
+
+            </TextBox>
+            <Grid Grid.Row="2" Grid.Column="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Margin="0, 5">
+
+                </TextBox>
+                <Button Grid.Column="1" Margin="15, 0">
+                    Подписать
+                </Button>
+            </Grid>
+        </Grid>
+        <RichTextBox DockPanel.Dock="Bottom" Margin="10" >
+
+        </RichTextBox>
+    </DockPanel>
 </Window>

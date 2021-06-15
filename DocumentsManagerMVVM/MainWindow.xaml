@@ -30,7 +30,7 @@
                     <GridView>
                         <GridView.Columns>
                             <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
-                            <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                            <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding Path=Type}"></GridViewColumn>
                             <GridViewColumn Header="">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
