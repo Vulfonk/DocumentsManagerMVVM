@@ -18,10 +18,10 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Content="Добавить документ" Height="20" Grid.Row="0" Grid.Column="0" Margin="10, 0" >
+                <Button Command="{Binding Path=ClickAddDoc}" Content="Добавить документ" Height="20" Grid.Row="0" Grid.Column="0" Margin="10, 0" >
 
                 </Button>
-                <Button Command="{Binding Path=ClickAddDoc}"  Content="Добавить задачу" Height="20" Grid.Row="0" Grid.Column="1"  Margin="10, 0">
+                <Button Command="{Binding Path=ClickAddTask}"  Content="Добавить задачу" Height="20" Grid.Row="0" Grid.Column="1"  Margin="10, 0">
 
                 </Button>
             </Grid>

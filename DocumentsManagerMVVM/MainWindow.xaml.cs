@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System;
 using System.Linq;
 using System.Windows.Input;
+using DocumentsManagerMVVM.DocumentModel;
+
 
 namespace DocumentsManagerMVVM
 {
@@ -48,8 +50,6 @@ namespace DocumentsManagerMVVM
         }
     }
 
-
-
     public class MainVM : INotifyPropertyChanged
     {
         public MainVM()
@@ -57,15 +57,29 @@ namespace DocumentsManagerMVVM
             sourceData = new ObservableCollection<DataRowVM>();
         }
         public ObservableCollection<DataRowVM> sourceData { get; set; }
+
         private DelegateCommand clickAddDoc;
-        private void NewWindow(object sender)
+
+        private void CreateDocumentCard(object sender)
         {
             new DocumentCardWindow().Show();
         }
+
+        private void CreateTaskCard(object sender)
+        {
+            new TaskCardWindow().Show();
+        }
+
         public DelegateCommand ClickAddDoc
         {
-            get => new DelegateCommand(NewWindow);
+            get => new DelegateCommand(CreateDocumentCard);
         }
+
+        public DelegateCommand ClickAddTask
+        {
+            get => new DelegateCommand(CreateTaskCard);
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -87,97 +101,5 @@ namespace DocumentsManagerMVVM
         }
         public string Name { get; set; }
         public string Type { get; set; }
-    }
-
-    public abstract class Subject
-    {
-        static protected uint subId = 0;
-        protected string name;
-        protected string bodyText;
-        protected uint id;
-
-        public Subject(string name, string text)
-        {
-            this.Identifier = subId++;
-            this.name = name;
-            this.bodyText = text;
-        }
-        public uint Identifier
-        {
-            get => id;
-            protected set => id = value;
-        }
-
-    }
-
-    public class Document : Subject
-    {
-        private Guid digitalSignature;
-
-        public Document(string name, string text) : base(name, text) { }
-
-        public string Name
-        {
-            get => name;
-            set
-            {
-                if (digitalSignature != null)
-                    throw new Exception();
-                else
-                    name = value;
-            }
-        }
-
-        public string BodyText
-        {
-            get => bodyText;
-            set
-            {
-                if (digitalSignature != null)
-                    throw new Exception();
-                else
-                    bodyText = value;
-            }
-        }
-
-        public Guid DigitalSignature
-        {
-            get => digitalSignature;
-            set
-            {
-                if (digitalSignature != null)
-                    throw new Exception();
-                else
-                    digitalSignature = value;
-            }
-        }
-    }
-
-    public enum State
-    {
-        InProcess,
-        Complete,
-    }
-
-    public class Task : Subject
-    {
-        public Task(string name, string text) : base(name, text) { }
-
-        public string Name { get => name; set => name = value; }
-        public string BodyText { get => bodyText; set => bodyText = value; }
-        public State State { get; set; }
-    }
-
-    public class Model
-    {
-        public List<Subject> Subjects { get; }
-
-        public void AddSubject(Subject sub)
-        {
-            if (Subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)
-                throw new Exception();
-            else
-                Subjects.Add(sub);
-        }
     }
 }
