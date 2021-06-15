@@ -170,14 +170,14 @@ namespace DocumentsManagerMVVM
 
     public class Model
     {
-        public List<Subject> Objects { get; }
+        public List<Subject> Subjects { get; }
 
-        public void AddEntity(Subject obj)
+        public void AddSubject(Subject sub)
         {
-            if (Objects.Where(o => o.Identifier == obj.Identifier).Count() != 0)
+            if (Subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)
                 throw new Exception();
             else
-                Objects.Add(obj);
+                Subjects.Add(sub);
         }
     }
 }
