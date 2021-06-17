@@ -10,16 +10,13 @@ namespace DocumentsManagerMVVM.ViewModels
 
     public class DocCardVM : BaseViewModel
     {
-        private string name;
-        private string bodyText;
-        private uint id;
-        private Guid signature;
+        private Document doc;
 
-        public string Name { get => name; set => name = value; }
+        public string Name { get => doc.Name; set => doc.Name = value; }
 
-        public uint Identifier { get => id; set => id = value; }
+        public uint Identifier { get => doc.Identifier; set => doc.Identifier = value; }
 
-        public string BodyText { get => bodyText; set => bodyText = value; }
+        public string BodyText { get => doc.BodyText; set => doc.BodyText = value; }
 
         public string Signature
         {
@@ -28,13 +25,13 @@ namespace DocumentsManagerMVVM.ViewModels
                 if (isSignatureEmpty())
                     return "";
                 else
-                    return signature.ToString();
+                    return doc.DigitalSignature.ToString();
             }
         }
 
         public DocCardVM()
         {
-
+            doc = new Document();
         }
         public bool IsSignatured
         {
@@ -45,19 +42,18 @@ namespace DocumentsManagerMVVM.ViewModels
         }
         private void SubscribeDocument(object sender)
         {
-            Document createdDoc = new Document(name, bodyText, id);
-            signature = createdDoc.DigitalSignature;
+            doc.Subscribe();
 
             OnPropertyChanged("Signature");
             OnPropertyChanged("IsSignatured");
 
-            model.AddSubject(createdDoc);
-            subjects.Add(new DataRowVM(createdDoc));
+            model.AddSubject(doc);
+            subjects.Add(new DataRowVM(doc));
         }
 
         private bool isSignatureEmpty(object sender = null)
         {
-            return signature == Guid.Parse("00000000-0000-0000-0000-000000000000");
+            return doc.DigitalSignature == Guid.Parse("00000000-0000-0000-0000-000000000000");
         }
 
         public DelegateCommand ClickAddDoc

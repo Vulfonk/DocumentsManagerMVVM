@@ -12,14 +12,11 @@ namespace DocumentsManagerMVVM
         private uint id;
         private string name;
         private string bodyText;
-        private bool isSignature;
+        private bool isSignature = false;
 
-        public Document(string name, string text, uint id)
+        public void Subscribe()
         {
-            this.Identifier = id;
-            this.name = name;
-            this.bodyText = text;
-            this.DigitalSignature = Guid.NewGuid();
+            digitalSignature = Guid.NewGuid();
             isSignature = true;
         }
 
@@ -50,13 +47,6 @@ namespace DocumentsManagerMVVM
         public Guid DigitalSignature
         {
             get => digitalSignature;
-            set
-            {
-                if (isSignature)
-                    throw new Exception();
-                else
-                    digitalSignature = value;
-            }
         }
 
         public uint Identifier
