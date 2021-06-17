@@ -34,7 +34,7 @@
             <TextBox  Text="{Binding Path=Identifier, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="10, 15">
 
             </TextBox>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="10, 15">
+            <TextBox Text="{Binding Path=Name}" Grid.Row="1" Grid.Column="1" Margin="10, 15">
 
             </TextBox>
             <Grid Grid.Row="2" Grid.Column="1" Margin="10">
@@ -42,7 +42,7 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Margin="0, 5">
+                <TextBox Text="{Binding Path=Signature, Mode=OneWay}" Grid.Column="0" Margin="0, 5">
 
                 </TextBox>
                 <Button Command="{Binding Path=ClickAddDoc}" Grid.Column="1" Margin="15, 0">
@@ -50,8 +50,8 @@
                 </Button>
             </Grid>
         </Grid>
-        <RichTextBox DockPanel.Dock="Bottom" Margin="10" >
+        <TextBox Text="{Binding Path=BodyText}" DockPanel.Dock="Bottom" Margin="10" >
 
-        </RichTextBox>
+        </TextBox>
     </DockPanel>
 </Window>

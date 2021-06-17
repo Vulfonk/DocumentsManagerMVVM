@@ -14,7 +14,7 @@ namespace DocumentsManagerMVVM.ViewModels
         public MainVM()
         {
             model = new Model();
-            sourceData = new ObservableCollection<DataRowVM>();
+            subjects = new ObservableCollection<DataRowVM>();
         }
 
         private DelegateCommand clickAddDoc;
@@ -39,6 +39,8 @@ namespace DocumentsManagerMVVM.ViewModels
         {
             get => new DelegateCommand(CreateTaskCard);
         }
+
+        public ObservableCollection<DataRowVM> Subjects { get => subjects; set => subjects = value; }
     }
 
 

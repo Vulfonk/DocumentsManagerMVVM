@@ -14,12 +14,12 @@ namespace DocumentsManagerMVVM
         private string bodyText;
         private bool isSignature;
 
-        public Document(string name, string text, uint id, Guid guid)
+        public Document(string name, string text, uint id, Guid signature)
         {
             this.Identifier = id;
             this.name = name;
             this.bodyText = text;
-            this.DigitalSignature = guid;
+            this.DigitalSignature = signature;
             isSignature = true;
         }
 

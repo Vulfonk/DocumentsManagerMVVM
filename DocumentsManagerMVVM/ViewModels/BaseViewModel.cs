@@ -11,13 +11,13 @@ namespace DocumentsManagerMVVM.ViewModels
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
         protected static Model model;
-
+        protected static ObservableCollection<DataRowVM> subjects;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<DataRowVM> sourceData { get; set; }
 
     }
 }

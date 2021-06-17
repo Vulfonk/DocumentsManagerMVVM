@@ -12,7 +12,6 @@ namespace DocumentsManagerMVVM.ViewModels
         public DataRowVM(ISubject sub)
         {
             subject = sub;
-
         }
         public string Name { get => subject.Name; }
         public string Type
