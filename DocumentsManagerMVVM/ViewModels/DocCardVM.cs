@@ -14,27 +14,14 @@ namespace DocumentsManagerMVVM.ViewModels
         {
 
         }
-        private EventHandler documentIsAdded;
-
-        public event EventHandler DocumentIsAdded
-        {
-            add
-            {
-                documentIsAdded += value;
-            }
-            remove
-            {
-                documentIsAdded -= value;
-            }
-        }
-
+        
         private DelegateCommand clickButtonSubscribe;
 
         private void SubscribeDocument(object sender)
         {
             Document createdDoc = new Document("asd", "sadasd", 123, Guid.NewGuid());
             model.AddSubject(createdDoc);
-            documentIsAdded?.Invoke(createdDoc, null);
+            this.sourceData.Add(new DataRowVM(createdDoc));
         }
 
         public DelegateCommand ClickAddDoc
