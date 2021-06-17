@@ -36,12 +36,21 @@ namespace DocumentsManagerMVVM.ViewModels
         {
 
         }
-      
+        public bool IsSignatured
+        {
+            get
+            {
+                return !isSignatureEmpty();
+            }
+        }
         private void SubscribeDocument(object sender)
         {
-            signature = Guid.NewGuid();
+            Document createdDoc = new Document(name, bodyText, id);
+            signature = createdDoc.DigitalSignature;
+
             OnPropertyChanged("Signature");
-            Document createdDoc = new Document(name, bodyText, id, signature);
+            OnPropertyChanged("IsSignatured");
+
             model.AddSubject(createdDoc);
             subjects.Add(new DataRowVM(createdDoc));
         }
