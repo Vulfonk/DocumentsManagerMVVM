@@ -8,8 +8,8 @@ namespace DocumentsManagerMVVM
 {
     public class Model
     {
-        public List<ISubject> Subjects { get; }
-
+        private List<ISubject> subjects = new List<ISubject>();
+        public List<ISubject> Subjects { get => subjects;}
         public void AddSubject(ISubject sub)
         {
             if (Subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)

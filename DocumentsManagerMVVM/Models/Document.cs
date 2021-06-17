@@ -12,6 +12,7 @@ namespace DocumentsManagerMVVM
         private uint id;
         private string name;
         private string bodyText;
+        private bool isSignature;
 
         public Document(string name, string text, uint id, Guid guid)
         {
@@ -19,6 +20,7 @@ namespace DocumentsManagerMVVM
             this.name = name;
             this.bodyText = text;
             this.DigitalSignature = guid;
+            isSignature = true;
         }
 
         public string Name
@@ -26,7 +28,7 @@ namespace DocumentsManagerMVVM
             get => name;
             set
             {
-                if (digitalSignature != null)
+                if (isSignature)
                     throw new Exception();
                 else
                     name = value;
@@ -38,7 +40,7 @@ namespace DocumentsManagerMVVM
             get => bodyText;
             set
             {
-                if (digitalSignature != null)
+                if (isSignature)
                     throw new Exception();
                 else
                     bodyText = value;
@@ -50,7 +52,7 @@ namespace DocumentsManagerMVVM
             get => digitalSignature;
             set
             {
-                if (digitalSignature != null)
+                if (isSignature)
                     throw new Exception();
                 else
                     digitalSignature = value;
@@ -62,7 +64,7 @@ namespace DocumentsManagerMVVM
             get => id;
             set
             {
-                if (digitalSignature != null)
+                if (isSignature)
                     throw new Exception();
                 else
                     id = value;

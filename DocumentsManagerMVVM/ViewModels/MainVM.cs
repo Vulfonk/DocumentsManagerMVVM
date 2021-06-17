@@ -1,50 +1,14 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace DocumentsManagerMVVM
+namespace DocumentsManagerMVVM.ViewModels
 {
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
-
-    public class DelegateCommand : ICommand
-    {
-        private Action<object> execute;
-        private Func<object, bool> canExecute = null;
-
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value;
-
-            remove => CommandManager.RequerySuggested -= value;
-        }
-
-        public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
-        {
-            this.execute = execute;
-            this.canExecute = canExecute;
-        }
-        public bool CanExecute(object parameter)
-        {
-            return this.canExecute == null || this.canExecute(parameter);
-        }
-
-        public void Execute(object parameter)
-        {
-            this.execute(parameter);
-        }
-    }
-
     public class MainVM : INotifyPropertyChanged
     {
         public Model MainModel { get; set; }
@@ -57,9 +21,19 @@ namespace DocumentsManagerMVVM
 
         private DelegateCommand clickAddDoc;
 
+        private void DocumentAddHandler(object sender, EventArgs e)
+        {
+            sourceData.Add(new DataRowVM(sender as ISubject));
+        }
+
         private void CreateDocumentCard(object sender)
         {
-            var docCard = new DocumentCardWindow();
+            var docVm = new DocCardVM(MainModel);
+            docVm.DocumentIsAdded += DocumentAddHandler;
+            var docCard = new DocumentCardWindow()
+            {
+                DataContext = docVm
+            };
             docCard.Show();
         }
 
@@ -106,6 +80,35 @@ namespace DocumentsManagerMVVM
                 else
                     throw new Exception();
             }
+        }
+    }
+
+    public class DelegateCommand : ICommand
+    {
+        private Action<object> execute;
+
+        private Func<object, bool> canExecute = null;
+
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+
+            remove => CommandManager.RequerySuggested -= value;
+        }
+
+        public DelegateCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        {
+            this.execute = execute;
+            this.canExecute = canExecute;
+        }
+        public bool CanExecute(object parameter)
+        {
+            return this.canExecute == null || this.canExecute(parameter);
+        }
+
+        public void Execute(object parameter)
+        {
+            this.execute(parameter);
         }
     }
 }

@@ -55,18 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Document.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="ISubject.cs" />
-    <Compile Include="Task.cs" />
-    <Compile Include="TaskCardWindow.xaml.cs">
+    <Compile Include="ViewModels\BaseView.cs" />
+    <Compile Include="ViewModels\DocCardVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\ISubject.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Views\TaskCardWindow.xaml.cs">
       <DependentUpon>TaskCardWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="DocumentCardWindow.xaml">
+    <Page Include="Views\DocumentCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -74,14 +77,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DocumentCardWindow.xaml.cs">
+    <Compile Include="Views\DocumentCardWindow.xaml.cs">
       <DependentUpon>DocumentCardWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TaskCardWindow.xaml">
+    <Page Include="Views\TaskCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,5 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

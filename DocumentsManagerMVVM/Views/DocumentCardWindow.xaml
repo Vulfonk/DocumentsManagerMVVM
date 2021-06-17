@@ -6,11 +6,6 @@
         xmlns:local="clr-namespace:DocumentsManagerMVVM"
         mc:Ignorable="d"
         Title="DocumentCardWindow" Height="390.79" Width="720.658">
-    
-    <Window.DataContext>
-        <local:DocCardVM/>
-    </Window.DataContext>
-
     <DockPanel>
         <Grid DockPanel.Dock="Top" Height="150" Background="Bisque" Margin="10">
             <Grid.RowDefinitions>
@@ -31,7 +26,7 @@
             <Label Grid.Row="2" Grid.Column="0" Margin="10">
                 Цифровая подпись
             </Label>
-            <TextBox Text="{Binding Path=Identifier, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="10, 15">
+            <TextBox  Text="{Binding Path=Identifier, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="10, 15">
 
             </TextBox>
             <TextBox Grid.Row="1" Grid.Column="1" Margin="10, 15">
@@ -45,7 +40,7 @@
                 <TextBox Grid.Column="0" Margin="0, 5">
 
                 </TextBox>
-                <Button Grid.Column="1" Margin="15, 0">
+                <Button Command="{Binding Path=ClickAddDoc}" Grid.Column="1" Margin="15, 0">
                     Подписать
                 </Button>
             </Grid>
