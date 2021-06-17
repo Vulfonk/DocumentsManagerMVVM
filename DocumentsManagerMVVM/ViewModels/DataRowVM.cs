@@ -26,5 +26,22 @@ namespace DocumentsManagerMVVM.ViewModels
                     throw new Exception();
             }
         }
+        private void openSubject(object sender)
+        {
+            if (subject is Document)
+            {
+                var docCard = new DocumentCardWindow()
+                {
+                    DataContext = new DocCardVM(subject as Document)
+                };
+                docCard.Show();
+            }
+
+
+        }
+        public DelegateCommand ClickOpenSubject
+        {
+            get => new DelegateCommand(openSubject);
+        }
     }
 }

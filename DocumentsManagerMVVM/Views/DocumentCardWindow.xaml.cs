@@ -12,6 +12,11 @@ namespace DocumentsManagerMVVM
         {
             InitializeComponent();
         }
+
+        private void Window_CanExecute(object sender, System.Windows.Input.CanExecuteRoutedEventArgs e)
+        {
+
+        }
     }
 
 }

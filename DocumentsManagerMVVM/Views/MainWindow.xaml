@@ -34,7 +34,7 @@
                             <GridViewColumn Header="">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Button  Content="Открыть"></Button>
+                                        <Button  Content="Открыть" Command="{Binding Path=ClickOpenSubject}"></Button>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

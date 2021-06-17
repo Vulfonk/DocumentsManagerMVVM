@@ -17,31 +17,27 @@ namespace DocumentsManagerMVVM.ViewModels
             subjects = new ObservableCollection<DataRowVM>();
         }
 
-        private DelegateCommand clickAddDoc;
-
-        private void CreateDocumentCard(object sender)
+        private void createDocumentCard(object sender)
         {
             var docCard = new DocumentCardWindow();
             docCard.Show();
         }
 
-        private void CreateTaskCard(object sender)
+        private void createTaskCard(object sender)
         {
             new TaskCardWindow().Show();
         }
 
         public DelegateCommand ClickAddDoc
         {
-            get => new DelegateCommand(CreateDocumentCard);
+            get => new DelegateCommand(createDocumentCard);
         }
 
         public DelegateCommand ClickAddTask
         {
-            get => new DelegateCommand(CreateTaskCard);
+            get => new DelegateCommand(createTaskCard);
         }
 
         public ObservableCollection<DataRowVM> Subjects { get => subjects; set => subjects = value; }
     }
-
-
 }

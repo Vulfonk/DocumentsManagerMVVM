@@ -12,11 +12,20 @@ namespace DocumentsManagerMVVM.ViewModels
     {
         private Document doc;
 
-        public string Name { get => doc.Name; set => doc.Name = value; }
+        private Document Doc
+        {
+            get
+            {
+                DocumentChanged?.Invoke(this, null);
+                return doc;
+            }
+        }
 
-        public uint Identifier { get => doc.Identifier; set => doc.Identifier = value; }
+        public string Name { get => Doc.Name; set => Doc.Name = value; }
 
-        public string BodyText { get => doc.BodyText; set => doc.BodyText = value; }
+        public uint Identifier { get => Doc.Identifier; set => Doc.Identifier = value; }
+
+        public string BodyText { get => Doc.BodyText; set => Doc.BodyText = value; }
 
         public string Signature
         {
@@ -25,14 +34,22 @@ namespace DocumentsManagerMVVM.ViewModels
                 if (isSignatureEmpty())
                     return "";
                 else
-                    return doc.DigitalSignature.ToString();
+                    return Doc.DigitalSignature.ToString();
             }
         }
 
+        event EventHandler DocumentChanged;
+
         public DocCardVM()
         {
-            doc = new Document();
+            this.doc = new Document();
         }
+
+        public DocCardVM(Document doc)
+        {
+            this.doc = doc;
+        }
+
         public bool IsSignatured
         {
             get
