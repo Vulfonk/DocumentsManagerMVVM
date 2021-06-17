@@ -338,4 +338,3 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
-/DocumentsManagerMVVM/ViewModels/BaseView.cs

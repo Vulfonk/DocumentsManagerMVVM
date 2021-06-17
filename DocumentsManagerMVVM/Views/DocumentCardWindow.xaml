@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DocumentsManagerMVVM"
+        xmlns:local="clr-namespace:DocumentsManagerMVVM.ViewModels"
         mc:Ignorable="d"
         Title="DocumentCardWindow" Height="390.79" Width="720.658">
+
+    <Window.DataContext>
+        <local:DocCardVM/>
+    </Window.DataContext>
+
     <DockPanel>
         <Grid DockPanel.Dock="Top" Height="150" Background="Bisque" Margin="10">
             <Grid.RowDefinitions>

@@ -9,15 +9,13 @@ using System.Windows.Input;
 
 namespace DocumentsManagerMVVM.ViewModels
 {
-    public class MainVM : INotifyPropertyChanged
+    public class MainVM : BaseViewModel
     {
-        public Model MainModel { get; set; }
         public MainVM()
         {
-            MainModel = new Model();
+            model = new Model();
             sourceData = new ObservableCollection<DataRowVM>();
         }
-        public ObservableCollection<DataRowVM> sourceData { get; set; }
 
         private DelegateCommand clickAddDoc;
 
@@ -28,7 +26,7 @@ namespace DocumentsManagerMVVM.ViewModels
 
         private void CreateDocumentCard(object sender)
         {
-            var docVm = new DocCardVM(MainModel);
+            var docVm = new DocCardVM();
             docVm.DocumentIsAdded += DocumentAddHandler;
             var docCard = new DocumentCardWindow()
             {
@@ -51,13 +49,6 @@ namespace DocumentsManagerMVVM.ViewModels
         {
             get => new DelegateCommand(CreateTaskCard);
         }
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-
     }
 
     public class DataRowVM

@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 namespace DocumentsManagerMVVM.ViewModels
 {
 
-    public class DocCardVM : INotifyPropertyChanged
+    public class DocCardVM : BaseViewModel
     {
-        private Model model;
-        public DocCardVM(Model model)
+        public DocCardVM()
         {
-            this.model = model;
+
         }
         private EventHandler documentIsAdded;
 
@@ -31,7 +30,6 @@ namespace DocumentsManagerMVVM.ViewModels
 
         private DelegateCommand clickButtonSubscribe;
 
-        public event PropertyChangedEventHandler PropertyChanged;
         private void SubscribeDocument(object sender)
         {
             Document createdDoc = new Document("asd", "sadasd", 123, Guid.NewGuid());
@@ -43,10 +41,7 @@ namespace DocumentsManagerMVVM.ViewModels
         {
             get => new DelegateCommand(SubscribeDocument);
         }
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+     
         private uint id;
         public uint Identifier { get => id; set => id = value; }
 
