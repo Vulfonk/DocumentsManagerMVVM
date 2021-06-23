@@ -14,6 +14,8 @@ namespace DocumentsManagerMVVM
         private string bodyText;
         private bool isSignature = false;
 
+        public event EventHandler NameChanged;
+
         public void Subscribe()
         {
             digitalSignature = Guid.NewGuid();
@@ -26,9 +28,14 @@ namespace DocumentsManagerMVVM
             set
             {
                 if (isSignature)
+                {
                     throw new Exception();
+                }
                 else
+                {
                     name = value;
+                    NameChanged?.Invoke(this, null);
+                }
             }
         }
 

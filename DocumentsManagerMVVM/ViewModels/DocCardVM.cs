@@ -10,22 +10,25 @@ namespace DocumentsManagerMVVM.ViewModels
 
     public class DocCardVM : BaseViewModel
     {
-        private Document doc;
+        private Document document;
 
-        private Document Doc
-        {
-            get
-            {
-                DocumentChanged?.Invoke(this, null);
-                return doc;
-            }
+        public string Name 
+        { 
+            get => document.Name; 
+            set => document.Name = value; 
         }
 
-        public string Name { get => Doc.Name; set => Doc.Name = value; }
+        public uint Identifier 
+        { 
+            get => document.Identifier; 
+            set => document.Identifier = value; 
+        }
 
-        public uint Identifier { get => Doc.Identifier; set => Doc.Identifier = value; }
-
-        public string BodyText { get => Doc.BodyText; set => Doc.BodyText = value; }
+        public string BodyText 
+        { 
+            get => document.BodyText; 
+            set => document.BodyText = value; 
+        }
 
         public string Signature
         {
@@ -34,20 +37,21 @@ namespace DocumentsManagerMVVM.ViewModels
                 if (isSignatureEmpty())
                     return "";
                 else
-                    return Doc.DigitalSignature.ToString();
+                    return document.DigitalSignature.ToString();
             }
         }
 
-        event EventHandler DocumentChanged;
-
         public DocCardVM()
         {
-            this.doc = new Document();
+            this.document = new Document();
+
+            subjects.Add(new DataRowVM(document));
+
         }
 
         public DocCardVM(Document doc)
         {
-            this.doc = doc;
+            this.document = doc;
         }
 
         public bool IsSignatured
@@ -59,18 +63,17 @@ namespace DocumentsManagerMVVM.ViewModels
         }
         private void SubscribeDocument(object sender)
         {
-            doc.Subscribe();
+            document.Subscribe();
 
             OnPropertyChanged("Signature");
             OnPropertyChanged("IsSignatured");
 
-            model.AddSubject(doc);
-            subjects.Add(new DataRowVM(doc));
+            model.AddSubject(document);
         }
 
         private bool isSignatureEmpty(object sender = null)
         {
-            return doc.DigitalSignature == Guid.Parse("00000000-0000-0000-0000-000000000000");
+            return document.DigitalSignature == Guid.Parse("00000000-0000-0000-0000-000000000000");
         }
 
         public DelegateCommand ClickAddDoc

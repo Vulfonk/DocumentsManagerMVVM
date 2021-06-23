@@ -8,5 +8,7 @@ namespace DocumentsManagerMVVM
         {
             InitializeComponent();
         }
+
+
     }
 }

@@ -12,6 +12,9 @@ namespace DocumentsManagerMVVM
         uint Identifier { get; set; }
         string Name { get; set; }
         string BodyText { get; set; }
+        
+        event EventHandler NameChanged;
+
     }
 
 }

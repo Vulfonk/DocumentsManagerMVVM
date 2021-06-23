@@ -12,6 +12,7 @@ namespace DocumentsManagerMVVM.ViewModels
     {
         protected static Model model;
         protected static ObservableCollection<DataRowVM> subjects;
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

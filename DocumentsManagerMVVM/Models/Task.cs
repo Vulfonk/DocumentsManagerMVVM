@@ -12,6 +12,8 @@ namespace DocumentsManagerMVVM
         private string name;
         private string bodyText;
 
+        public event EventHandler NameChanged;
+
         public Task(string name, string text, uint id)
         {
             this.Identifier = id;
@@ -20,9 +22,25 @@ namespace DocumentsManagerMVVM
         }
 
         public State State { get; set; }
-        public uint Identifier { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public string BodyText { get => bodyText; set => bodyText = value; }
+        public uint Identifier 
+        { 
+            get => id; 
+            set => id = value; 
+        }
+        public string Name 
+        { 
+            get => name;
+            set
+            {
+                name = value;
+                NameChanged?.Invoke(this, null);
+            }
+        }
+        public string BodyText 
+        { 
+            get => bodyText; 
+            set => bodyText = value; 
+        }
     }
     public enum State
     {

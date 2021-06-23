@@ -12,10 +12,15 @@ namespace DocumentsManagerMVVM
         public List<ISubject> Subjects { get => subjects;}
         public void AddSubject(ISubject sub)
         {
-            if (Subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)
+            if (subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)
                 throw new Exception();
             else
-                Subjects.Add(sub);
+                subjects.Add(sub);
+        }
+        public void EditSubject(ISubject sub)
+        {
+            var index = subjects.FindIndex(o => o.Identifier == sub.Identifier);
+            subjects[index] = sub;
         }
     }
 }
