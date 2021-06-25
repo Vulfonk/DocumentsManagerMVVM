@@ -7,7 +7,7 @@
 
     mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" 
-                           MinHeight="400" MinWidth="700">
+                           MinHeight="350" MinWidth="300">
     <Window.DataContext>
         <local:MainVM/>
     </Window.DataContext>
@@ -30,7 +30,7 @@
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
-                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                            <GridViewColumn Width="250" Header="Название" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
                             <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding Path=Type}"></GridViewColumn>
                             <GridViewColumn Header="">
                                 <GridViewColumn.CellTemplate>

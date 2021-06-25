@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DocumentsManagerMVVM
 {
+    /// <summary>
+    /// Предсавляет модель работы с коллекцией объектов приложения
+    /// </summary>
     public class Model
     {
         private List<ISubject> subjects = new List<ISubject>();
-        public List<ISubject> Subjects { get => subjects;}
-        public void AddSubject(ISubject sub)
+
+        private uint currentId;
+
+        /// <summary>
+        /// Добавляет объект приложения в коллекцию модели
+        /// </summary>
+        /// <param name="subject"> Объект </param>
+        public void AddSubject(ISubject subject)
         {
-            if (subjects.Where(o => o.Identifier == sub.Identifier).Count() != 0)
-                throw new Exception();
-            else
-                subjects.Add(sub);
-        }
-        public void EditSubject(ISubject sub)
-        {
-            var index = subjects.FindIndex(o => o.Identifier == sub.Identifier);
-            subjects[index] = sub;
+            subject.Identifier = currentId++;
+            subjects.Add(subject);
         }
     }
 }

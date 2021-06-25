@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentsManagerMVVM
 {
+    /// <summary>
+    /// Представляет задачу с состоянием 
+    /// </summary>
     public class Task : ISubject
     {
         private uint id;
+
         private string name;
+
         private string bodyText;
 
         public event EventHandler NameChanged;
 
-        public Task(string name, string text, uint id)
-        {
-            this.Identifier = id;
-            this.name = name;
-            this.bodyText = text;
-        }
-
+        /// <summary>
+        /// Текущее состояние задачи
+        /// </summary>
         public State State { get; set; }
         public uint Identifier 
-        { 
+        {
             get => id; 
             set => id = value; 
         }
+
         public string Name 
         { 
             get => name;
@@ -42,9 +40,19 @@ namespace DocumentsManagerMVVM
             set => bodyText = value; 
         }
     }
+    
+    /// <summary>
+    /// Указывает на состояние
+    /// </summary>
     public enum State
     {
+        /// <summary>
+        /// В работе
+        /// </summary>
         InProcess,
+        /// <summary>
+        /// Выполнена
+        /// </summary>
         Complete,
     }
 }

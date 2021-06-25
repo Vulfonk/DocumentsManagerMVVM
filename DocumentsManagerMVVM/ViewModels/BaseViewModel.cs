@@ -1,23 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DocumentsManagerMVVM.ViewModels
 {
+    /// <summary>
+    /// Представляет базовую ViewModel приложения, содержащую в себе Модель
+    /// </summary>
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        protected static Model model;
-        protected static ObservableCollection<DataRowVM> subjects;
+        /// <summary>
+        /// Модель приложения
+        /// </summary>
+        protected static Model model = new Model();
 
+        /// <summary>
+        /// Коллекция отображаемых объектов
+        /// </summary>
+        protected static ObservableCollection<DataRowVM> dataRowSubjects = new ObservableCollection<DataRowVM>();
+
+        /// <summary>
+        /// Генерирует событие изменения свойства
+        /// </summary>
+        /// <param name="propertyName">Имя свойства</param>
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Происходит при изменении свойства
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
     }

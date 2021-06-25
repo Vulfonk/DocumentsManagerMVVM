@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
 
 namespace DocumentsManagerMVVM.ViewModels
 {
-    public class DataRowVM :INotifyPropertyChanged
+    /// <summary>
+    /// ViewModel для объектов приложения 
+    /// </summary>
+    public class DataRowVM : BaseViewModel
     {
+        /// <summary>
+        /// Объект приложения
+        /// </summary>
         private ISubject subject;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public DataRowVM(ISubject sub)
         {
             subject = sub;
+            model.AddSubject(subject);
             sub.NameChanged += SubjectNameChangedHandler;
         }
 
@@ -28,11 +24,17 @@ namespace DocumentsManagerMVVM.ViewModels
             OnPropertyChanged("Name");
         }
 
+        /// <summary>
+        /// Имя объекта
+        /// </summary>
         public string Name 
         { 
             get => subject.Name; 
         }
 
+        /// <summary>
+        /// Тип объекта 
+        /// </summary>
         public string Type
         {
             get
@@ -45,20 +47,31 @@ namespace DocumentsManagerMVVM.ViewModels
                     throw new Exception();
             }
         }
-        private void OpenSubject(object sender)
+
+        private void ClickOpenSubjectHandler(object sender)
         {
             if (subject is Document)
             {
-                var docCard = new DocumentCardWindow()
+                new DocumentCardWindow()
                 {
-                    DataContext = new DocCardVM(subject as Document)
-                };
-                docCard.Show();
+                    DataContext = new DocumentCardVM(subject as Document)
+                }.Show();
+            }
+            else if (subject is Task)
+            {
+                new TaskCardWindow()
+                {
+                    DataContext = new TaskCardVM(subject as Task)
+                }.Show();
             }
         }
+
+        /// <summary>
+        /// Команда открытия объекта
+        /// </summary>
         public DelegateCommand ClickOpenSubject
         {
-            get => new DelegateCommand(OpenSubject);
+            get => new DelegateCommand(ClickOpenSubjectHandler);
         }
     }
 }

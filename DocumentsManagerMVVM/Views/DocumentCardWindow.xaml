@@ -27,8 +27,14 @@
             <Label Grid.Row="2" Grid.Column="0" Margin="10">
                 Цифровая подпись
             </Label>
-            <TextBox IsReadOnly="{Binding Path=IsSignatured}" Text="{Binding Path=Identifier, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Margin="10, 15">
-
+            <TextBox IsReadOnly="True" 
+                     Grid.Row="0" 
+                     Grid.Column="1" 
+                     Margin="10, 15">
+                <TextBox.Text>
+                    <Binding Path="Identifier" Mode="OneWay" UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </TextBox.Text>
             </TextBox>
             <TextBox IsReadOnly="{Binding Path=IsSignatured}" Text="{Binding Path=Name}" Grid.Row="1" Grid.Column="1" Margin="10, 15">
 
@@ -41,7 +47,7 @@
                 <TextBox IsReadOnly="True" Text="{Binding Path=Signature, Mode=OneWay}" Grid.Column="0" Margin="0, 5">
 
                 </TextBox>
-                <Button Command="{Binding Path=ClickAddDoc}" Grid.Column="1" Margin="15, 0">
+                <Button Command="{Binding Path=ClickSubscribeDocument}" Grid.Column="1" Margin="15, 0">
                     Подписать
                 </Button>
             </Grid>

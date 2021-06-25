@@ -58,12 +58,13 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DataRowVM.cs" />
     <Compile Include="ViewModels\DelegateCommand.cs" />
-    <Compile Include="ViewModels\DocCardVM.cs" />
+    <Compile Include="ViewModels\DocumentCardVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\ISubject.cs" />
     <Compile Include="Models\Task.cs" />
+    <Compile Include="ViewModels\TaskCardVM.cs" />
     <Compile Include="Views\TaskCardWindow.xaml.cs">
       <DependentUpon>TaskCardWindow.xaml</DependentUpon>
     </Compile>
